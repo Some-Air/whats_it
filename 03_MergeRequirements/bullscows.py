@@ -2,6 +2,7 @@ import random
 import argparse
 import os.path
 import urllib.request
+import cowsay
 
 parser = argparse.ArgumentParser()
 parser.add_argument('dictionary', action='store_true', default='https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt',  help='Put a link to some dictionary')
@@ -23,15 +24,15 @@ def bullscows(guess, secret):
     return b, c
 
 def ask(valid: list[str] = None):
-    prompt=input("Введите слово: ")
+    prompt=input(cowsay.cowsay("Введите слово: ", cowfile=random.choice(cowsay.list_cows())))
     if valid:
         while prompt not in dict:
-            print("Такое слово не подходит")
-            prompt=input("Введите слово: ")
+            print(cowsay.cowsay("Введите слово: ", cowfile=random.choice(cowsay.list_cows())))
+            prompt=input(cowsay.cowsay("Введите слово: ", cowfile=random.choice(cowsay.list_cows())))
     return prompt
 
 def inform(b, c):
-    print("Быки: {", b, "}, Коровы: {", c, "}")
+    print(cowsay.cowsay("Быки: {", b, "}, Коровы: {", c, "}", cowfile=random.choice(cowsay.list_cows())))
 
 def gameplay():
     o=0
